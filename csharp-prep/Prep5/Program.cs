@@ -6,7 +6,7 @@ class Program
     {
         DisplayWelcomeMessage();
 
-        string userName = PromptUserName();
+        string userName = PromptUserName(); 
         int userNumber = PromptUserNumber();
 
         int squaredNumber = SquareNumber(userNumber);
