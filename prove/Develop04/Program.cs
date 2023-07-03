@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 
-// Base class for all activities
 public abstract class Activity
 {
     protected string name;
@@ -48,7 +47,6 @@ public abstract class Activity
     }
 }
 
-// Derived class for Breathing Activity
 public class BreathingActivity : Activity
 {
     public BreathingActivity(string name, string description) : base(name, description)
@@ -80,7 +78,6 @@ public class BreathingActivity : Activity
     }
 }
 
-// Derived class for Reflection Activity
 public class ReflectionActivity : Activity
 {
     private string[] prompts = {
