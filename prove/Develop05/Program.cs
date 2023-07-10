@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
-// Base class for all types of goals
 public abstract class Goal
 {
     public string Name { get; private set; }
@@ -25,8 +23,6 @@ public abstract class Goal
 
     public abstract string GetDetailsString();
 }
-
-// Class for simple goals that can be marked complete
 public class SimpleGoal : Goal
 {
     public SimpleGoal(string name, int points) : base(name, points)
@@ -44,7 +40,6 @@ public class SimpleGoal : Goal
     }
 }
 
-// Class for eternal goals that can be logged multiple times
 public class EternalGoal : Goal
 {
     public EternalGoal(string name, int points) : base(name, points)
@@ -53,7 +48,6 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        // No completion logic for eternal goals
     }
 
     public override string GetDetailsString()
@@ -62,7 +56,6 @@ public class EternalGoal : Goal
     }
 }
 
-// Class for checklist goals that must be accomplished a certain number of times
 public class ChecklistGoal : Goal
 {
     public int TargetCount { get; private set; }
@@ -88,7 +81,6 @@ public class ChecklistGoal : Goal
     }
 }
 
-// Class to manage goals and user progress
 public class GoalManager
 {
     private List<Goal> goals = new List<Goal>();
@@ -121,7 +113,7 @@ public class GoalManager
 
     public void DisplayGoals()
     {
-        Console.WriteLine("Goals:");
+        Console.WriteLine("Goals: ");
         for (int i = 0; i < goals.Count; i++)
         {
             Goal goal = goals[i];
@@ -183,8 +175,6 @@ public class GoalManager
         Console.WriteLine("Goals loaded successfully.");
     }
 }
-
-// Main program
 public class Program
 {
     public static void Main(string[] args)
@@ -194,14 +184,14 @@ public class Program
 
         while (!exitProgram)
         {
-            Console.WriteLine("\nEternal Quest - Goal Tracker");
+            Console.WriteLine("Menu options");
             Console.WriteLine("1. Create new goal");
             Console.WriteLine("2. List goals");
             Console.WriteLine("3. Save goals");
             Console.WriteLine("4. Load goals");
-            Console.WriteLine("5. Add event");
-            Console.WriteLine("6. Close");
-            Console.Write("Enter your choice: ");
+            Console.WriteLine("5. Record event");
+            Console.WriteLine("6. Quit");
+            Console.Write("Select a choice from the menu: ");
             string choice = Console.ReadLine();
             Console.WriteLine();
 
@@ -238,11 +228,11 @@ public class Program
 
     private static void CreateNewGoal(GoalManager goalManager)
     {
-        Console.WriteLine("Select the type of goal:");
+        Console.WriteLine("The types of Goals are: ");
         Console.WriteLine("1. Simple Goal");
         Console.WriteLine("2. Eternal Goal");
         Console.WriteLine("3. Checklist Goal");
-        Console.Write("Enter your choice: ");
+        Console.Write("What type of goal would you like to create? ");
         string choice = Console.ReadLine();
 
         switch (choice)
@@ -264,11 +254,11 @@ public class Program
 
     private static void CreateSimpleGoal(GoalManager goalManager)
     {
-        Console.Write("Enter goal name: ");
+        Console.Write("What is the name of the goal? ");
         string name = Console.ReadLine();
-        Console.Write("Enter goal description: ");
+        Console.Write("What is a short description of it? ");
         string description = Console.ReadLine();
-        Console.Write("Enter points for completing the goal: ");
+        Console.Write("What is the amount of points associated with this goal? ");
         int points = int.Parse(Console.ReadLine());
 
         Goal goal = new SimpleGoal(name, points);
@@ -278,11 +268,11 @@ public class Program
 
     private static void CreateEternalGoal(GoalManager goalManager)
     {
-        Console.Write("Enter goal name: ");
+        Console.Write("What is the name of the goal? ");
         string name = Console.ReadLine();
-        Console.Write("Enter goal description: ");
+        Console.Write("What is a short description of it? ");
         string description = Console.ReadLine();
-        Console.Write("Enter points for each event: ");
+        Console.Write("What is the amount of points associated with this goal? ");
         int points = int.Parse(Console.ReadLine());
 
         Goal goal = new EternalGoal(name, points);
@@ -292,13 +282,13 @@ public class Program
 
     private static void CreateChecklistGoal(GoalManager goalManager)
     {
-        Console.Write("Enter goal name: ");
+        Console.Write("What is the name of the goal? ");
         string name = Console.ReadLine();
-        Console.Write("Enter goal description: ");
+        Console.Write("What is a short description of it? ");
         string description = Console.ReadLine();
-        Console.Write("Enter points for each event: ");
+        Console.Write("What is the amount of points associated with this goal? ");
         int points = int.Parse(Console.ReadLine());
-        Console.Write("Enter target count: ");
+        Console.Write("How many times must you complete this goal? ");
         int targetCount = int.Parse(Console.ReadLine());
 
         Goal goal = new ChecklistGoal(name, points, targetCount);
